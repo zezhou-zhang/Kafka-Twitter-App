@@ -1,4 +1,6 @@
 package com.github.shefalibisht.kafka.consumer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.github.shefalibisht.kafka.json.Json;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -8,9 +10,11 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 public class TwitterConsumer {
@@ -18,15 +22,12 @@ public class TwitterConsumer {
 //    public static void main(String[] args) {
 //        new TwitterConsumer().run();
 //    }
-
+    private final String bootstrapServers = "127.0.0.1:9092";
+    private final String groupId = "my-first-app";
+    private final String topic = "Twitter-Kafka";
     public TwitterConsumer() { run(); }
     private void run() {
         Logger logger = LoggerFactory.getLogger(TwitterConsumer.class.getName());
-
-        String bootstrapServers = "127.0.0.1:9092";
-        String groupId = "my-first-app";
-        String topic = "Twitter-Kafka_Topic";
-
         // latch for dealing with multiple threads
         CountDownLatch latch = new CountDownLatch(1);
 
@@ -71,6 +72,8 @@ public class TwitterConsumer {
         private CountDownLatch latch;
         private KafkaConsumer<String,String> consumer;
         private Logger logger = LoggerFactory.getLogger(ConsumerRunnable.class.getName());
+        private volatile int maxRetweetCount = 0;
+        private volatile String maxRetweetedTweet;
 
         public ConsumerRunnable(String bootstrapServers,
                                 String groupId,
@@ -98,11 +101,33 @@ public class TwitterConsumer {
             try {
                 while (true) {
                     ConsumerRecords<String, String> records =
-                            consumer.poll(Duration.ofMillis(100)); // new in Kafka 2.0.0
+                            consumer.poll(Duration.ofSeconds(1)); // new in Kafka 2.0.0
 
                     for (ConsumerRecord<String, String> record : records) {
                         logger.info("Key-> " + record.key() + ", Value->: " + record.value());
                         //logger.info("Partition: " + record.partition() + ", Offset:" + record.offset());
+                        JsonNode node = null;
+                        JsonNode subNode = null;
+                        int retweetCount = 0;
+                        try {
+                            node = Json.parse(record.value());
+                            String tweetText = node.get("text").asText();
+                            System.out.println("Current tweet Text: " + tweetText);
+                            JsonNode quotedStatusNode = node.get("quoted_status");
+                            if (quotedStatusNode!= null) {
+                                retweetCount = quotedStatusNode.get("retweet_count").asInt();
+                            }else {
+                                retweetCount = node.get("retweet_count").asInt();
+                            }
+                            if (retweetCount >= maxRetweetCount) {
+                                maxRetweetCount = retweetCount;
+                                maxRetweetedTweet = record.value().toString();
+                                System.out.println(String.format("Current max retweet count: %d, " +
+                                        "max retweeted text: %s", maxRetweetCount, tweetText));
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             } catch (WakeupException e) {

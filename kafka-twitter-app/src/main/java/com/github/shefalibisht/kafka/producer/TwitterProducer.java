@@ -32,7 +32,7 @@ public class TwitterProducer {
     private KafkaProducer<String, String> producer;
     private BlockingQueue<String> msgQueue = new LinkedBlockingQueue<>(30);
     private List<String> trackTerms = Lists.newArrayList("coronavirus");
-
+    private int maxNumberofTweets = 15;
 //    public static void main(String[] args) {
 //        new TwitterProducer().run();
 //    }
@@ -103,7 +103,8 @@ public class TwitterProducer {
         }));
 
         // 3. Send Tweets to Kafka
-        while (!client.isDone()) {
+        int numberOfSentTweets = 0;
+        while (!client.isDone() && numberOfSentTweets < maxNumberofTweets) {
             String msg = null;
             try {
                 msg = msgQueue.poll(5, TimeUnit.SECONDS);
@@ -116,11 +117,14 @@ public class TwitterProducer {
                 producer.send(new ProducerRecord<String, String>(KafkaConfig.TOPIC, null, msg), new Callback() {
                     @Override
                     public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                        System.out.println(String.format("Record was sent to (partition: %d, offset: %d)",
+                                recordMetadata.partition(), recordMetadata.offset()));
                         if (e != null) {
                             logger.error("Some error OR something bad happened", e);
                         }
                     }
                 });
+                numberOfSentTweets++;
             }
         }
         logger.info("\n Application End");
