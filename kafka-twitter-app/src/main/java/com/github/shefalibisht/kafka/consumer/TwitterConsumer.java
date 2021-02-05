@@ -24,7 +24,7 @@ public class TwitterConsumer {
 //    }
     private final String bootstrapServers = "127.0.0.1:9092";
     private final String groupId = "my-first-app";
-    private final String topic = "Twitter-Kafka";
+    private final String topic = "vaccine-tweets";
     public TwitterConsumer() { run(); }
     private void run() {
         Logger logger = LoggerFactory.getLogger(TwitterConsumer.class.getName());
