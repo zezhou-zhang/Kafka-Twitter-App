@@ -1,6 +1,6 @@
-package com.github.shefalibisht.kafka.consumer;
+package com.kafka.streaming.consumer;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.shefalibisht.kafka.json.Json;
+import com.kafka.streaming.json.Json;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 public class TwitterConsumer {

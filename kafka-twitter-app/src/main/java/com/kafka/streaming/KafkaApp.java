@@ -1,8 +1,8 @@
-package com.github.shefalibisht.kafka;
+package com.kafka.streaming;
 
-import com.github.shefalibisht.kafka.consumer.TwitterConsumer;
-import com.github.shefalibisht.kafka.producer.Producer;
-import com.github.shefalibisht.kafka.producer.TwitterProducer;
+import com.kafka.streaming.consumer.TwitterConsumer;
+import com.kafka.streaming.producer.Producer;
+import com.kafka.streaming.producer.TwitterProducer;
 import com.google.common.collect.Lists;
 import org.apache.kafka.clients.producer.KafkaProducer;
 

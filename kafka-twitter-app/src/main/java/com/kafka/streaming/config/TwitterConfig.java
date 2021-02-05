@@ -1,4 +1,4 @@
-package com.github.shefalibisht.kafka.config;
+package com.kafka.streaming.config;
 
 public class TwitterConfig {
 

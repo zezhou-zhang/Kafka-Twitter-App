@@ -1,4 +1,4 @@
-package com.github.shefalibisht.kafka.producer;
+package com.kafka.streaming.producer;
 
 import com.google.common.collect.Lists;
 import com.twitter.hbc.core.Client;

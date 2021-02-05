@@ -1,6 +1,6 @@
-package com.github.shefalibisht.kafka.producer;
+package com.kafka.streaming.producer;
 
-import com.github.shefalibisht.kafka.config.KafkaConfig;
+import com.kafka.streaming.config.KafkaConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
