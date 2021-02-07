@@ -21,9 +21,9 @@ public class TwitterConsumer {
 //    public static void main(String[] args) {
 //        new TwitterConsumer().run();
 //    }
-    private final String bootstrapServers = "127.0.0.1:9092";
+    private final String bootstrapServers = "172.16.1.1:9092,172.16.1.2:9092,172.16.1.3:9092";
     private final String groupId = "my-first-app";
-    private final String topic = "vaccine-tweets";
+    private final String topic = "vaccine-tweets-cluster";
     public TwitterConsumer() { run(); }
     private void run() {
         Logger logger = LoggerFactory.getLogger(TwitterConsumer.class.getName());

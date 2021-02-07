@@ -3,7 +3,7 @@ package com.kafka.streaming.config;
 
 public class KafkaConfig {
 
-    public static final String BOOTSTRAPSERVERS  = "127.0.0.1:9092";
+    public static final String BOOTSTRAPSERVERS  = "172.16.1.1:9092,172.16.1.2:9092,172.16.1.3:9092";
 
     public static final String ACKS_CONFIG = "all";
     public static final String MAX_IN_FLIGHT_CONN = "5";

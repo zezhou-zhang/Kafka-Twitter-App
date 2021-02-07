@@ -10,8 +10,8 @@ import java.util.List;
 
 public class KafkaApp {
     private static final KafkaProducer<String, String> kafkaProducer = Producer.createKafkaProducer();
-    private static final List<String> trackTerms = Lists.newArrayList("coronavirus", "coronavirus vaccine");
-    public static final List<String> topicList = Lists.newArrayList("covid-tweets","vaccine-tweets");
+    private static final List<String> trackTerms = Lists.newArrayList("covid", "covid vaccine");
+    public static final List<String> topicList = Lists.newArrayList("covid-tweets-cluster","vaccine-tweets-cluster");
     public static void main(String[] args) {
         try {
             int maxNumberofTweets = (int) Math. round(Integer.valueOf(args[0]) / 2);
