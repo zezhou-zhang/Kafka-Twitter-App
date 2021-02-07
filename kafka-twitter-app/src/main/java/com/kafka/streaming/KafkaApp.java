@@ -14,13 +14,14 @@ public class KafkaApp {
     public static final List<String> topicList = Lists.newArrayList("covid-tweets","vaccine-tweets");
     public static void main(String[] args) {
         try {
+            int maxNumberofTweets = (int) Math. round(Integer.valueOf(args[0]) / 2);
             // 1. First Run Producer to produce Twitter tweets to Kafka Topic
             for (int i = 0; i < trackTerms.size(); i++){
-                new TwitterProducer(kafkaProducer, trackTerms.get(i), topicList.get(i)).start();
+                new TwitterProducer(kafkaProducer, trackTerms.get(i), topicList.get(i), maxNumberofTweets).start();
             }
 
             // 2. Uncomment it to run Kafka producer and subscribe to Twitter Kafka Topic
-            new TwitterConsumer();
+            // new TwitterConsumer();
             // 3. Run Kafka producer, subscribe to Twitter Kafka topic and ingest data into MongoDB database
             // new KafkaConsumerMongoDb();
         }catch(Exception e){

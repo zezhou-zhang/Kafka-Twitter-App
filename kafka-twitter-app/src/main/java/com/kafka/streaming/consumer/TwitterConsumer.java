@@ -103,12 +103,13 @@ public class TwitterConsumer {
                             consumer.poll(Duration.ofSeconds(1)); // new in Kafka 2.0.0
 
                     for (ConsumerRecord<String, String> record : records) {
-                        logger.info("Key-> " + record.key() + ", Value->: " + record.value());
+                        //logger.info("Key-> " + record.key() + ", Value->: " + record.value());
                         //logger.info("Partition: " + record.partition() + ", Offset:" + record.offset());
                         JsonNode node = null;
                         JsonNode subNode = null;
                         int retweetCount = 0;
                         try {
+                            long offset = record.offset();
                             node = Json.parse(record.value());
                             String tweetText = node.get("text").asText();
                             System.out.println("Current tweet Text: " + tweetText);
@@ -121,8 +122,9 @@ public class TwitterConsumer {
                             if (retweetCount >= maxRetweetCount) {
                                 maxRetweetCount = retweetCount;
                                 maxRetweetedTweet = record.value().toString();
-                                System.out.println(String.format("Current max retweet count: %d, " +
-                                        "max retweeted text: %s", maxRetweetCount, tweetText));
+                                System.out.println(String.format("ID: d% Tweet with retweet count: %d is received from the topic: %s",
+                                        offset, maxRetweetCount, tweetText));
+                                System.out.println(tweetText + "\n");
                             }
                         } catch (IOException e) {
                             e.printStackTrace();

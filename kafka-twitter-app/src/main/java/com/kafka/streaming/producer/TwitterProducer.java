@@ -23,14 +23,14 @@ public class TwitterProducer extends Thread {
     private BlockingQueue<String> msgQueue = new LinkedBlockingQueue<>(30);
     private List<String> trackTermList;
     private String kafkaTopic;
+    private int maxNumberofTweets;
 
-    private final int maxNumberofTweets = 15;
 
-
-    public TwitterProducer(KafkaProducer<String, String> kafkaProducer, String trackTerm, String kafkaTopic) {
+    public TwitterProducer(KafkaProducer<String, String> kafkaProducer, String trackTerm, String kafkaTopic, int maxNumberofTweets) {
         this.kafkaProducer = kafkaProducer;
         this.trackTermList =  Lists.newArrayList(trackTerm);
         this.kafkaTopic = kafkaTopic;
+        this.maxNumberofTweets = maxNumberofTweets;
     }
 
     public void start(){
