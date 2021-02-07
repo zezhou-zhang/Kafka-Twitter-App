@@ -6,12 +6,13 @@ import com.kafka.streaming.producer.TwitterProducer;
 import com.google.common.collect.Lists;
 import org.apache.kafka.clients.producer.KafkaProducer;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class KafkaApp {
     private static final KafkaProducer<String, String> kafkaProducer = Producer.createKafkaProducer();
-    private static final List<String> trackTerms = Lists.newArrayList("covid", "covid vaccine");
-    public static final List<String> topicList = Lists.newArrayList("covid-tweets-cluster","vaccine-tweets-cluster");
+    private static final List<String> trackTerms = Arrays.asList("covid", "covid vaccine");
+    public static final List<String> topicList = Arrays.asList("covid-tweets-cluster", "vaccine-tweets-cluster");
     public static void main(String[] args) {
         try {
             int maxNumberofTweets = (int) Math. round(Integer.valueOf(args[0]) / 2);
@@ -21,7 +22,7 @@ public class KafkaApp {
             }
 
             // 2. Uncomment it to run Kafka producer and subscribe to Twitter Kafka Topic
-            // new TwitterConsumer();
+            new TwitterConsumer(topicList, maxNumberofTweets);
             // 3. Run Kafka producer, subscribe to Twitter Kafka topic and ingest data into MongoDB database
             // new KafkaConsumerMongoDb();
         }catch(Exception e){
