@@ -1,7 +1,16 @@
 package com.kafka.streaming.producer;
 
 import com.google.common.collect.Lists;
+import com.kafka.streaming.config.TwitterConfig;
+import com.twitter.hbc.ClientBuilder;
 import com.twitter.hbc.core.Client;
+import com.twitter.hbc.core.Constants;
+import com.twitter.hbc.core.Hosts;
+import com.twitter.hbc.core.HttpHosts;
+import com.twitter.hbc.core.endpoint.StatusesFilterEndpoint;
+import com.twitter.hbc.core.processor.StringDelimitedProcessor;
+import com.twitter.hbc.httpclient.auth.Authentication;
+import com.twitter.hbc.httpclient.auth.OAuth1;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -43,8 +52,7 @@ public class TwitterProducer extends Thread {
         logger.info("Setting up");
 
         // 1. Call the Twitter Client
-        TwitterClient twitterClient = new TwitterClient(trackTermList, msgQueue);
-        client = twitterClient.createTwitterClient();
+        client = createTwitterClient(trackTermList, msgQueue);
         client.connect();
 
         // Shutdown Hook
@@ -84,6 +92,26 @@ public class TwitterProducer extends Thread {
         logger.info("\n Application End");
     }
 
+    public Client createTwitterClient(List<String> trackTerms, BlockingQueue<String> msgQueue) {
+        /** Setting up a connection   */
+        Hosts twitterHosts = new HttpHosts(Constants.STREAM_HOST);
+        StatusesFilterEndpoint hbEndpoint = new StatusesFilterEndpoint();
+        // Term that I want to search on Twitter
+        hbEndpoint.trackTerms(trackTerms);
+        // Twitter API and tokens
+        Authentication hosebirdAuth = new OAuth1(TwitterConfig.CONSUMER_KEYS, TwitterConfig.CONSUMER_SECRETS, TwitterConfig.TOKEN, TwitterConfig.SECRET);
+
+        /** Creating a client   */
+        ClientBuilder builder = new ClientBuilder()
+                .name("Kafka-Twitter-Client")
+                .hosts(twitterHosts)
+                .authentication(hosebirdAuth)
+                .endpoint(hbEndpoint)
+                .processor(new StringDelimitedProcessor(msgQueue));
+
+        Client hbClient = builder.build();
+        return hbClient;
+    }
 
 
 }

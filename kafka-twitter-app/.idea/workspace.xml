@@ -19,9 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="140bbaa0-70c4-43a6-b5d3-41e61ae27789" name="Default Changelist" comment="change consumer to differentiate topics">
+    <list default="true" id="140bbaa0-70c4-43a6-b5d3-41e61ae27789" name="Default Changelist" comment="try again">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kafka/streaming/producer/TwitterProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kafka/streaming/producer/TwitterProducer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +88,7 @@
       <workItem from="1612452538677" duration="11022000" />
       <workItem from="1612470161818" duration="2225000" />
       <workItem from="1612472397988" duration="5939000" />
-      <workItem from="1612655887307" duration="10155000" />
+      <workItem from="1612655887307" duration="10856000" />
     </task>
     <task id="LOCAL-00001" summary="added kafka twitter">
       <created>1612472211140</created>
@@ -125,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612733209959</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="try again">
+      <created>1612737073956</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612737073956</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +156,8 @@
     <MESSAGE value="changed package name" />
     <MESSAGE value="make it to cluster" />
     <MESSAGE value="change consumer to differentiate topics" />
-    <option name="LAST_COMMIT_MESSAGE" value="change consumer to differentiate topics" />
+    <MESSAGE value="try again" />
+    <option name="LAST_COMMIT_MESSAGE" value="try again" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611860702288">
@@ -184,10 +192,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="263" y="113" key="SettingsEditor/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611862867984" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1612733272708">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1612737082350">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1612733272708" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1612737082350" />
     <state x="462" y="200" key="git4idea.merge.GitPullDialog" timestamp="1612731769594">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
