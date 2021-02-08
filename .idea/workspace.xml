@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2e8a4c4e-b6d6-4054-9240-69902b1ee988" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/kafka-twitter-app/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-twitter-app/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-twitter-app/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-twitter-app/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-twitter-app/kafka-twitter-app.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ni6RjnhHpFT9ziG7abo1YozbQd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2e8a4c4e-b6d6-4054-9240-69902b1ee988" name="Default Changelist" comment="" />
+      <created>1611860557596</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1611860557596</updated>
+      <workItem from="1611860560582" duration="50000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="114" key="FileChooserDialogImpl" timestamp="1611860589303">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="114" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611860589303" />
+    <state x="439" y="117" width="689" height="590" key="NewModule_or_Project.wizard" timestamp="1611860608518">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="439" y="117" width="689" height="590" key="NewModule_or_Project.wizard/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611860608518" />
+  </component>
+</project>
