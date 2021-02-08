@@ -42,8 +42,8 @@ public class TwitterConsumer {
         logger.info("Creating the consumer thread");
         Runnable myConsumerRunnable = new ConsumerRunnable(
                 bootstrapServers,
-                groupId,
                 topics,
+                groupId,
                 latch
         );
 
@@ -84,8 +84,8 @@ public class TwitterConsumer {
         private volatile String maxRetweetedTweet;
 
         public ConsumerRunnable(String bootstrapServers,
+                                List<String> topics,
                                 String groupId,
-                                List<String> topic,
                                 CountDownLatch latch) {
             this.latch = latch;
 
@@ -100,7 +100,7 @@ public class TwitterConsumer {
             // create consumer
             consumer = new KafkaConsumer<String, String>(properties);
             // subscribe consumer to our topic(s)
-            consumer.subscribe(topic);
+            consumer.subscribe(topics);
         }
 
         @Override
@@ -123,7 +123,7 @@ public class TwitterConsumer {
                             String kafkaTopic = record.topic();
                             node = Json.parse(record.value());
                             String tweetText = node.get("text").asText();
-                            System.out.println("Current tweet Text: " + tweetText);
+                            // System.out.println("Current tweet Text: " + tweetText);
                             JsonNode quotedStatusNode = node.get("quoted_status");
                             if (quotedStatusNode!= null) {
                                 retweetCount = quotedStatusNode.get("retweet_count").asInt();
@@ -135,7 +135,7 @@ public class TwitterConsumer {
                                 if (retweetCount >= maxRetweetCountforCovid) {
                                     maxRetweetCountforCovid = retweetCount;
                                     maxRetweetedTweet = record.value().toString();
-                                    System.out.println(String.format("ID: d% Tweet with retweet count: %d is received from the topic: %s",
+                                    System.out.println(String.format("ID: %d Tweet with retweet count: %d is received from the topic: %s",
                                             offset, maxRetweetCountforCovid, kafkaTopic));
                                     System.out.println(tweetText + "\n");
                                 }
@@ -143,12 +143,12 @@ public class TwitterConsumer {
                                 if (retweetCount >= maxRetweetCountforVaccine) {
                                     maxRetweetCountforVaccine = retweetCount;
                                     maxRetweetedTweet = record.value().toString();
-                                    System.out.println(String.format("ID: d% Tweet with retweet count: %d is received from the topic: %s",
+                                    System.out.println(String.format("ID: %d Tweet with retweet count: %d is received from the topic: %s",
                                             offset, maxRetweetCountforVaccine, kafkaTopic));
                                     System.out.println(tweetText + "\n");
                                 }
                             }
-                            consumer.commitAsync();
+                            //consumer.commitAsync();
                             tweetCounter++;
                         } catch (IOException e) {
                             e.printStackTrace();

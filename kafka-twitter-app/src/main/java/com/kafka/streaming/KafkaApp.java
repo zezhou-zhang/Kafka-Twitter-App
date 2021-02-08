@@ -17,9 +17,9 @@ public class KafkaApp {
         try {
             int maxNumberofTweets = (int) Math. round(Integer.valueOf(args[0]) / 2);
             // 1. First Run Producer to produce Twitter tweets to Kafka Topic
-            for (int i = 0; i < trackTerms.size(); i++){
-                new TwitterProducer(kafkaProducer, trackTerms.get(i), topicList.get(i), maxNumberofTweets).start();
-            }
+            // for (int i = 0; i < trackTerms.size(); i++){
+            //    new TwitterProducer(kafkaProducer, trackTerms.get(i), topicList.get(i), maxNumberofTweets).start();
+            //}
 
             // 2. Uncomment it to run Kafka producer and subscribe to Twitter Kafka Topic
             new TwitterConsumer(topicList, maxNumberofTweets);

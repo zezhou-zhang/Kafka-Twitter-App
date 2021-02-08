@@ -31,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Application</mainClass>
+                            <mainClass>com.kafka.streaming.KafkaApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
